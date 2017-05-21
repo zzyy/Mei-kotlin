@@ -1,11 +1,12 @@
-package com.zy.mei_kotlin
+package com.zy.mei_kotlin.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.zy.mei_kotlin.R
+import com.zy.mei_kotlin.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     var mRecyclerView: RecyclerView? = null
 
