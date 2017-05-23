@@ -2,6 +2,7 @@ package com.zy.mei_kotlin.main
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Message
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,14 +14,19 @@ class MainActivity : BaseActivity() {
 
     var mRecyclerView: RecyclerView? = null
 
-    
+    private val mHandler = object : Handler() {
+        override fun handleMessage(msg: Message?) {
+            super.handleMessage(msg)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initSplash()
-
+        window.decorView.post { initContentView() }
+        mHandler.postDelayed( {hideSplash()}, 5000 )
 
         mRecyclerView = findViewById(R.id.rv_content) as RecyclerView?;
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
@@ -30,13 +36,19 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun hideSplash() {
+        supportFragmentManager.findFragmentByTag("splash")
 
-    fun initContentView()  {
 
     }
 
-    fun initSplash(){
-        val splashFragment : Fragment = SplashFragment()
+
+    fun initContentView() {
+
+    }
+
+    fun initSplash() {
+        val splashFragment: Fragment = SplashFragment()
         val fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction()
                 .replace(R.id.fl_splash_container, splashFragment, "splash")
