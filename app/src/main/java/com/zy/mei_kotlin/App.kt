@@ -16,6 +16,6 @@ class App : Application() {
     }
 
     fun initMVPLifecycle(application: Application) {
-        application.registerActivityLifecycleCallbacks(BaseViewActivity.ViewLifecycle())
+        application.registerActivityLifecycleCallbacks(BaseViewActivity.ViewActivityLifecycle())
     }
 }

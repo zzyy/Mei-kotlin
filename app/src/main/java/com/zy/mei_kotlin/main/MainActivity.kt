@@ -8,9 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.zy.mei_kotlin.R
 import com.zy.mei_kotlin.base.BaseActivity
+import com.zy.mei_kotlin.base.BaseViewActivity
 import com.zy.mei_kotlin.splash.SplashFragment
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseViewActivity<MainPresenter>() {
+    override fun getPresenter(): MainPresenter {
+        return MainPresenter(this)
+    }
 
     var mRecyclerView: RecyclerView? = null
 
