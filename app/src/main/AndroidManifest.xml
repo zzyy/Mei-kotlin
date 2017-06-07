@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.zy.mei_kotlin"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zy.mei_kotlin">
 
     <application
         android:name=".App"
@@ -12,11 +12,19 @@
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".db.MeiProvider"
+            android:authorities="com.zy.mei"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity android:name=".main.TestProviderActivity"></activity>
     </application>
 
 </manifest>

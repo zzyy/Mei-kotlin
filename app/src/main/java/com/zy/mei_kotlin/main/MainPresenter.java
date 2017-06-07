@@ -1,5 +1,6 @@
 package com.zy.mei_kotlin.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.zy.mei_kotlin.base.BasePresenter;
@@ -17,5 +18,9 @@ public class MainPresenter extends BasePresenter<MainActivity> {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+    }
+
+    public void goTestPrivider() {
+        getView().startActivity(new Intent(getView(), TestProviderActivity.class));
     }
 }

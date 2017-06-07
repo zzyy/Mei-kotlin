@@ -1,11 +1,13 @@
 package com.zy.mei_kotlin.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.zy.mei_kotlin.R
 import com.zy.mei_kotlin.base.BaseActivity
 import com.zy.mei_kotlin.base.BaseViewActivity
@@ -59,6 +61,10 @@ class MainActivity : BaseViewActivity<MainPresenter>() {
                 .commit()
     }
 
+
+    fun goTestProviderActivity(v: View?){
+        presenter.goTestPrivider()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
