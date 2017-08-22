@@ -1,15 +1,13 @@
 package com.zy.mei_kotlin.main
 
-import android.content.Intent
+import android.app.Fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.zy.mei_kotlin.R
-import com.zy.mei_kotlin.base.BaseActivity
 import com.zy.mei_kotlin.base.BaseViewActivity
 import com.zy.mei_kotlin.splash.SplashFragment
 
@@ -30,11 +28,11 @@ class MainActivity : BaseViewActivity<MainPresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initSplash()
+        showSplash()
         window.decorView.post { initContentView() }
-        mHandler.postDelayed( {hideSplash()}, 5000 )
+        mHandler.postDelayed({ hideSplash() }, 1000)
 
-        mRecyclerView = findViewById(R.id.rv_content) as RecyclerView?;
+        mRecyclerView = findViewById(R.id.rv_content) as RecyclerView?
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
 
         mRecyclerView?.let {
@@ -42,27 +40,27 @@ class MainActivity : BaseViewActivity<MainPresenter>() {
         }
     }
 
-    private fun hideSplash() {
-        supportFragmentManager.findFragmentByTag("splash")
-
-
-    }
-
-
     fun initContentView() {
 
     }
 
-    fun initSplash() {
-        val splashFragment: Fragment = SplashFragment()
-        val fragmentManager = supportFragmentManager
+    private fun hideSplash() {
+        val splashFragment = fragmentManager.findFragmentByTag("splash")
         fragmentManager.beginTransaction()
-                .replace(R.id.fl_splash_container, splashFragment, "splash")
+                .hide(splashFragment)
+                .remove(splashFragment)
+                .commit()
+    }
+
+    private fun showSplash() {
+        val splashFragment: Fragment = SplashFragment()
+        fragmentManager.beginTransaction()
+                .replace(android.R.id.content, splashFragment, "splash")
                 .commit()
     }
 
 
-    fun goTestProviderActivity(v: View?){
+    fun goTestProviderActivity(v: View?) {
         presenter.goTestPrivider()
     }
 

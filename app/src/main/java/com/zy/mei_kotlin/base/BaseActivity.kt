@@ -1,8 +1,8 @@
 package com.zy.mei_kotlin.base
 
-import android.support.v7.app.AppCompatActivity
+import android.app.Activity
 
 /**
  * Created by Simon on 2017/5/21.
  */
-open class BaseActivity : AppCompatActivity()
+open class BaseActivity : Activity()

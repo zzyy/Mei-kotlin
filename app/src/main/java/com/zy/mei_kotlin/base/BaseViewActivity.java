@@ -8,7 +8,7 @@ import android.os.Bundle;
  * Created by Simon on 2017/5/25.
  */
 
-public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActivity implements BaseView<T> {
+public abstract class BaseViewActivity<T extends BaseActivityPresenter> extends BaseActivity implements BaseView<T> {
 
 
     public static final class ViewActivityLifecycle implements Application.ActivityLifecycleCallbacks {
@@ -22,7 +22,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onCreate(savedInstanceState);
+            ((BaseViewActivity) activity).getPresenter().onActivityCreate(savedInstanceState);
         }
 
         @Override
@@ -33,7 +33,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onStarted();
+            ((BaseViewActivity) activity).getPresenter().onActivityStarted();
         }
 
         @Override
@@ -44,7 +44,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onResumed();
+            ((BaseViewActivity) activity).getPresenter().onActivityResumed();
         }
 
         @Override
@@ -55,7 +55,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onPaused();
+            ((BaseViewActivity) activity).getPresenter().onActivityPaused();
         }
 
         @Override
@@ -66,7 +66,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onStopped();
+            ((BaseViewActivity) activity).getPresenter().onActivityStopped();
         }
 
         @Override
@@ -77,7 +77,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onSaveInstanceState(outState);
+            ((BaseViewActivity) activity).getPresenter().onActivitySaveInstanceState(outState);
         }
 
         @Override
@@ -88,7 +88,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends BaseActi
             if (((BaseViewActivity) activity).getPresenter() == null) {
                 return;
             }
-            ((BaseViewActivity) activity).getPresenter().onDestroyed();
+            ((BaseViewActivity) activity).getPresenter().onActivityDestroyed();
         }
     }
 }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.zy.mei_kotlin.base.BasePresenter;
+import com.zy.mei_kotlin.base.BaseActivityPresenter;
 import com.zy.mei_kotlin.db.MeiPojo;
 import com.zy.mei_kotlin.db.MeiProvider;
 
@@ -15,7 +15,7 @@ import com.zy.mei_kotlin.db.MeiProvider;
  * Created by Simon on 2017/6/7.
  */
 
-public class TestProviderPresent extends BasePresenter<TestProviderActivity> {
+public class TestProviderPresent extends BaseActivityPresenter<TestProviderActivity> {
     private static final String TAG = "zy.TestProviderPresent";
     public TestProviderPresent(TestProviderActivity mView) {
         super(mView);
@@ -24,9 +24,9 @@ public class TestProviderPresent extends BasePresenter<TestProviderActivity> {
     Uri uri = Uri.parse("content://" + MeiProvider.AUTHORITY);
 
     @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Log.i(TAG, "onCreate");
+    public void onActivityCreate(Bundle bundle) {
+        super.onActivityCreate(bundle);
+        Log.i(TAG, "onActivityCreate");
 
         getView().getContentResolver().registerContentObserver(Uri.parse("content://"+MeiProvider.AUTHORITY+"/mei/"), true, new ContentObserver(new Handler()) {
             @Override
