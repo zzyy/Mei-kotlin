@@ -4,19 +4,19 @@ import android.app.Fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.support.v4.view.ViewPager
 import com.zy.mei_kotlin.R
 import com.zy.mei_kotlin.base.BaseViewActivity
+import com.zy.mei_kotlin.main.homepage.HomePageFragment
 import com.zy.mei_kotlin.splash.SplashFragment
 
 class MainActivity : BaseViewActivity<MainPresenter>() {
+    var mHomePageFragment : Fragment? = null
+
     override fun getPresenter(): MainPresenter {
         return MainPresenter(this)
     }
 
-    var mRecyclerView: RecyclerView? = null
 
     private val mHandler = object : Handler() {
         override fun handleMessage(msg: Message?) {
@@ -31,16 +31,14 @@ class MainActivity : BaseViewActivity<MainPresenter>() {
         showSplash()
         window.decorView.post { initContentView() }
         mHandler.postDelayed({ hideSplash() }, 1000)
-
-        mRecyclerView = findViewById(R.id.rv_content) as RecyclerView?
-        mRecyclerView?.layoutManager = LinearLayoutManager(this)
-
-        mRecyclerView?.let {
-            it.layoutManager = LinearLayoutManager(this)
-        }
     }
 
     fun initContentView() {
+        mHomePageFragment = HomePageFragment()
+
+       fragmentManager.beginTransaction()
+               .replace(R.id.vg_main_container, mHomePageFragment)
+               .commit()
 
     }
 
@@ -60,12 +58,11 @@ class MainActivity : BaseViewActivity<MainPresenter>() {
     }
 
 
-    fun goTestProviderActivity(v: View?) {
-        presenter.goTestPrivider()
-    }
-
     override fun onDestroy() {
+        mHandler.removeCallbacksAndMessages(null)
         super.onDestroy()
 
     }
 }
+
+

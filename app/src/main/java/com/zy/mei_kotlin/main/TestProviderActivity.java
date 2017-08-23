@@ -1,5 +1,6 @@
 package com.zy.mei_kotlin.main;
 
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,15 @@ public class TestProviderActivity extends BaseViewActivity<TestProviderPresent> 
         return new TestProviderPresent(this);
     }
 
+    Fragment mFragment;
+
     public void insert(View view) {
         getPresenter().insertData();
+    }
+
+    void initView(){
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, mFragment)
+                .commit();
     }
 }
